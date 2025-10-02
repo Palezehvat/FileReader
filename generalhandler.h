@@ -42,7 +42,10 @@ class GeneralHandler : public QObject {
     std::shared_ptr<QList<IncorrectInput>> incorrectParams;
     QThreadPool* pool;
     QVector<std::shared_ptr<nLocalHandler::LocalHandler>> tasks;
-    QTimer timer;
+    QTimer* timer;
+    int timerValue;
+    std::atomic<int> activeTasks = 0;
+    bool cycleInProgress;
 
 public:
     GeneralHandler(QObject *parent = nullptr);
@@ -64,7 +67,9 @@ private:
 
 signals:
     void incorrect(std::shared_ptr<QList<IncorrectInput>> incorrectParams);
-    void setStatusForFile(const QFileInfo&, size_t percent);
+    void sendLog(const QString& message);
+    void sendStatusFile(const QFileInfo& file, const size_t& percent);
+    void findFiles(const QList<QFileInfo>& files);
 
 };
 

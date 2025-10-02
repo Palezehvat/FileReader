@@ -42,7 +42,7 @@ void LocalHandler::run() {
 
     while (!input.atEnd()) {
         if (stopped.load()) {
-            emit logMessage("Stopped: " + file.fileName());
+            emit finished();
             return;
         }
 
@@ -59,6 +59,13 @@ void LocalHandler::run() {
         processed += blockSize;
         emit processStatus(file, static_cast<size_t>((double)processed / sizeFile * 100));
     }
+
+    if (isNeedDelete && !input.remove()) {
+        emit logMessage(QString::fromStdString(
+            "Input file was deleteed: " + input.fileName().toStdString()
+        ));
+    }
+    emit finished();
 }
 
 void LocalHandler::stop() {

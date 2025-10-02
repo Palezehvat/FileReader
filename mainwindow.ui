@@ -20,272 +20,272 @@
      <verstretch>0</verstretch>
     </sizepolicy>
    </property>
-   <widget class="QWidget" name="horizontalLayoutWidget">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>100</y>
-      <width>891</width>
-      <height>568</height>
-     </rect>
-    </property>
-    <layout class="QHBoxLayout" name="mainHorizontalLayout">
-     <item>
-      <layout class="QVBoxLayout" name="mainVerticalLayout">
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayoutOfKey">
-         <item>
-          <widget class="QLabel" name="labelOfKey">
-           <property name="text">
-            <string>Ключ (8 байт, HEX):           </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditOfKey">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayoutOfOutputFolder">
-         <item>
-          <widget class="QLabel" name="labelOfOutputFolder">
-           <property name="text">
-            <string>Папка для сохранения:    </string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEditOfOutputFolder">
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonOfOutputFolder">
-           <property name="text">
-            <string>Browse</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayoutForMaskAndInputFolder">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayoutForUserMask">
-           <item>
-            <widget class="QLabel" name="labelOfMaskInputFiles">
-             <property name="text">
-              <string>Маска входных файлов:  </string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEditOfMaskInputFiles">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayoutForInputFolder">
-           <item>
-            <widget class="QLabel" name="labelOfInputFolder">
-             <property name="text">
-              <string>Папка для взятия файлов</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLineEdit" name="lineEditOfInputFolder"/>
-           </item>
-           <item>
-            <widget class="QPushButton" name="pushButtonOfInputFolder">
-             <property name="text">
-              <string>Browse</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="groupBoxOfConflict">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <layout class="QHBoxLayout" name="mainHorizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="mainVerticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayoutOfKey">
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayoutOfConflictOutputFiles">
+           <widget class="QLabel" name="labelOfKey">
+            <property name="text">
+             <string>Key (8 byte, HEX):       </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditOfKey">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayoutOfOutputFolder">
+          <item>
+           <widget class="QLabel" name="labelOfOutputFolder">
+            <property name="text">
+             <string>Save folder:                  </string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLineEdit" name="lineEditOfOutputFolder">
+            <property name="text">
+             <string/>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonOfOutputFolder">
+            <property name="text">
+             <string>Browse</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayoutForMaskAndInputFolder">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayoutForUserMask">
             <item>
-             <widget class="QLabel" name="labelOfConflictOutputFiles">
+             <widget class="QLabel" name="labelOfMaskInputFiles">
               <property name="text">
-               <string>Конфликт имён выходных файлов: </string>
+               <string>Input file mask:           </string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButtonOfRewriteOutputFiles">
+             <widget class="QLineEdit" name="lineEditOfMaskInputFiles">
               <property name="text">
-               <string>Перезаписывать</string>
+               <string/>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayoutForInputFolder">
+            <item>
+             <widget class="QLabel" name="labelOfInputFolder">
+              <property name="text">
+               <string>Folder for taking files:</string>
               </property>
              </widget>
             </item>
             <item>
-             <widget class="QRadioButton" name="radioButtonOfCounterForOutputFiles">
+             <widget class="QLineEdit" name="lineEditOfInputFolder"/>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButtonOfInputFolder">
               <property name="text">
-               <string>Добавить счётчик</string>
+               <string>Browse</string>
               </property>
              </widget>
             </item>
            </layout>
           </item>
          </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBoxOfDeleteFilesAfterProcess">
-         <property name="text">
-          <string>Удалять исходные файлы после обработки</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayoutMode">
-         <item>
-          <widget class="QGroupBox" name="groupBoxOfMode">
-           <property name="title">
-            <string/>
-           </property>
-           <layout class="QVBoxLayout" name="verticalLayout_2">
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBoxOfConflict">
+          <property name="title">
+           <string/>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayoutOfConflictOutputFiles">
+             <item>
+              <widget class="QLabel" name="labelOfConflictOutputFiles">
+               <property name="text">
+                <string>Output file name conflict:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonOfRewriteOutputFiles">
+               <property name="text">
+                <string>Rewrite</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QRadioButton" name="radioButtonOfCounterForOutputFiles">
+               <property name="text">
+                <string>Add a counter</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="checkBoxOfDeleteFilesAfterProcess">
+          <property name="text">
+           <string>Delete source files after processing</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayoutMode">
+          <item>
+           <widget class="QGroupBox" name="groupBoxOfMode">
+            <property name="title">
+             <string/>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_2">
+             <item>
+              <widget class="QLabel" name="labelOfModeTreatment">
+               <property name="text">
+                <string>Mode work:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <layout class="QVBoxLayout" name="verticalLayoutMode2">
+               <item>
+                <widget class="QRadioButton" name="radioButtonOfOneTimeTreatment">
+                 <property name="text">
+                  <string>One-time treatment</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayoutModeOfTimer">
+                 <item>
+                  <widget class="QRadioButton" name="radioButtonOfTimerTreatment">
+                   <property name="text">
+                    <string>By timer (in seconds)</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QSpinBox" name="spinBoxOfTimerTreatment">
+                   <property name="minimum">
+                    <number>1</number>
+                   </property>
+                   <property name="maximum">
+                    <number>1000</number>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayoutOfActions">
+          <item>
+           <widget class="QPushButton" name="pushButtonOfStart">
+            <property name="text">
+             <string>Start</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonOfPause">
+            <property name="text">
+             <string>Pause</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButtonOfStop">
+            <property name="text">
+             <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayoutOfStatus">
+          <item>
+           <widget class="QLabel" name="labelOfStatusTreatment">
+            <property name="text">
+             <string>Processing status::</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QListWidget" name="listWidgetOfStatusTreatment"/>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayoutOfStatus">
             <item>
-             <widget class="QLabel" name="labelOfModeTreatment">
+             <widget class="QLabel" name="labelOfProgressBarFofTreatment">
               <property name="text">
-               <string>Режим работы: </string>
+               <string>Overall processing progress:</string>
               </property>
              </widget>
             </item>
             <item>
-             <layout class="QVBoxLayout" name="verticalLayoutMode2">
-              <item>
-               <widget class="QRadioButton" name="radioButtonOfOneTimeTreatment">
-                <property name="text">
-                 <string>Однократная обработка</string>
-                </property>
-               </widget>
-              </item>
-              <item>
-               <layout class="QHBoxLayout" name="horizontalLayoutModeOfTimer">
-                <item>
-                 <widget class="QRadioButton" name="radioButtonOfTimerTreatment">
-                  <property name="text">
-                   <string>По таймеру(в секундах)</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QSpinBox" name="spinBoxOfTimerTreatment">
-                  <property name="minimum">
-                   <number>1</number>
-                  </property>
-                  <property name="maximum">
-                   <number>1000</number>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
-              </item>
-             </layout>
+             <widget class="QProgressBar" name="progressBarOfTreatment">
+              <property name="value">
+               <number>0</number>
+              </property>
+             </widget>
             </item>
            </layout>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayoutOfActions">
-         <item>
-          <widget class="QPushButton" name="pushButtonOfStart">
-           <property name="text">
-            <string>Начать</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonOfPause">
-           <property name="text">
-            <string>Пауза</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButtonOfStop">
-           <property name="text">
-            <string>Остановить</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayoutOfStatus">
-         <item>
-          <widget class="QLabel" name="labelOfStatusTreatment">
-           <property name="text">
-            <string>Статус обработки:</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QListWidget" name="listWidgetOfStatusTreatment"/>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayoutOfStatus">
-           <item>
-            <widget class="QLabel" name="labelOfProgressBarFofTreatment">
-             <property name="text">
-              <string>Прогресс общей обработки: </string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QProgressBar" name="progressBarOfTreatment">
-             <property name="value">
-              <number>0</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
-       </item>
-       <item>
-        <layout class="QVBoxLayout" name="verticalLayoutOfLogs">
-         <item>
-          <widget class="QLabel" name="labelOfLogs">
-           <property name="text">
-            <string>Логи</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QTextEdit" name="textEditOfLogs"/>
-         </item>
-        </layout>
-       </item>
-      </layout>
-     </item>
-    </layout>
-   </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayoutOfLogs">
+          <item>
+           <widget class="QLabel" name="labelOfLogs">
+            <property name="text">
+             <string>Logs</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QTextEdit" name="textEditOfLogs"/>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

@@ -37,8 +37,9 @@ public:
     void stop();
 
 signals:
-    void processStatus(const QFileInfo& file, size_t percent);
-    void logMessage(QString message);
+    void processStatus(const QFileInfo& file, const size_t& percent);
+    void logMessage(const QString& message);
+    void finished();
 
 };
 
