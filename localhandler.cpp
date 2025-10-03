@@ -5,9 +5,10 @@ namespace nLocalHandler {
 
 LocalHandler::LocalHandler(const ConflictMode& conflict, const QString& key,
                            const QFileInfo& file, const QDir& folderForOutputFiles,
-                           const bool& isNeedDelete) :
-    conflict(conflict), key(key), file(file), folderForOutputFiles(folderForOutputFiles),
-    isNeedDelete(isNeedDelete), paused(false), stopped(false), percent(0) {}
+                           const bool& isNeedDelete, std::atomic<bool>& paused, std::atomic<bool>& stopped) :
+    QObject(nullptr), QRunnable(), conflict(conflict), key(key), file(file),
+    folderForOutputFiles(folderForOutputFiles), isNeedDelete(isNeedDelete),
+    percent(0), paused(paused), stopped(stopped) {}
 
 void LocalHandler::run() {
     QFile input(file.absoluteFilePath());
@@ -25,6 +26,8 @@ void LocalHandler::run() {
             outputNameFile = file.completeBaseName() + "_" + QString::number(counter) + "." + file.suffix();
             ++counter;
         }
+    } else {
+        outputNameFile = file.fileName() + ".tmp";
     }
 
     QFile output(folderForOutputFiles.filePath(outputNameFile));
@@ -39,10 +42,14 @@ void LocalHandler::run() {
     qint64 processed = 0;
 
     QByteArray keyBytes = key.toUtf8();
+    QElapsedTimer timer;
+    timer.start();
 
     while (!input.atEnd()) {
         if (stopped.load()) {
-            emit finished();
+            emit finished(this);
+            input.close();
+            output.close();
             return;
         }
 
@@ -56,28 +63,31 @@ void LocalHandler::run() {
         }
 
         output.write(block);
-        processed += blockSize;
-        emit processStatus(file, static_cast<size_t>((double)processed / sizeFile * 100));
+        processed += block.size();
+        size_t newPercent = static_cast<size_t>((double)processed / sizeFile * 100);
+        if (timer.elapsed() > 100 && newPercent != percent) {
+            percent = newPercent;
+            timer.restart();
+            emit processStatus(file, percent);
+        }
+    }
+    emit processStatus(file, 100);
+    input.close();
+    output.close();
+
+    if (isNeedDelete || ConflictMode::Overwrite == conflict && !isNeedDelete) {
+        if (!input.remove()) {
+            emit logMessage(QString::fromStdString(
+                "Input file was deleteed: " + input.fileName().toStdString()
+            ));
+        }
     }
 
-    if (isNeedDelete && !input.remove()) {
-        emit logMessage(QString::fromStdString(
-            "Input file was deleteed: " + input.fileName().toStdString()
-        ));
+    if (conflict == ConflictMode::Overwrite && !output.rename(file.absoluteFilePath())) {
+        emit logMessage("Failed to rename " + output.fileName() + " в " + file.fileName());
     }
-    emit finished();
-}
 
-void LocalHandler::stop() {
-    stopped = true;
-}
-
-void LocalHandler::pause() {
-    paused = true;
-}
-
-void LocalHandler::resume() {
-    paused = false;
+    emit finished(this);
 }
 
 }

@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setWindowTitle("File Reader");
     handler = std::make_shared<nGeneralHandler::GeneralHandler>(this);
     isPaused = false;
 
@@ -51,6 +52,10 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::start() {
+    ui->labelOfInputFolder->setStyleSheet("QLabel { color : black; }");
+    ui->labelOfOutputFolder->setStyleSheet("QLabel { color : black; }");
+    ui->labelOfKey->setStyleSheet("QLabel { color : black; }");
+    ui->labelOfMaskInputFiles->setStyleSheet("QLabel { color : black; }");
     addLog("The process has been started");
     nLocalHandler::ConflictMode conflict = ui->radioButtonOfCounterForOutputFiles->isChecked()
         ? nLocalHandler::ConflictMode::AddCounter : nLocalHandler::ConflictMode::Overwrite;
@@ -58,7 +63,7 @@ void MainWindow::start() {
     if (ui->radioButtonOfOneTimeTreatment->isChecked()) {
         mode = {0, nGeneralHandler::ModeTreatment::OneTimeTreatment};
     } else {
-        mode = {static_cast<size_t>(ui->spinBoxOfTimerTreatment->value()), nGeneralHandler::ModeTreatment::OneTimeTreatment};
+        mode = {static_cast<size_t>(ui->spinBoxOfTimerTreatment->value()), nGeneralHandler::ModeTreatment::TimerTreatment};
     }
     handler->start(ui->lineEditOfKey->text(), ui->checkBoxOfDeleteFilesAfterProcess->isChecked(),
                    conflict, mode, ui->lineEditOfOutputFolder->text(),

@@ -10,7 +10,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Test)
+find_package(GTest REQUIRED)
+
+enable_testing()
 
 set(PROJECT_SOURCES
         main.cpp
@@ -18,6 +21,18 @@ set(PROJECT_SOURCES
         mainwindow.h
         mainwindow.ui
 )
+
+add_library(FileReaderLib STATIC
+    generalhandler.cpp
+    generalhandler.h
+    localhandler.cpp
+    localhandler.h
+)
+
+target_link_libraries(FileReaderLib PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
+target_include_directories(FileReaderLib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(FileReader
@@ -27,6 +42,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         generalhandler.cpp
         localhandler.h
         localhandler.cpp
+        README.md
+    )
+
+    target_link_libraries(FileReader PRIVATE
+        Qt${QT_VERSION_MAJOR}::Widgets
+        FileReaderLib
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET FileReader APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -46,7 +67,10 @@ else()
     endif()
 endif()
 
-target_link_libraries(FileReader PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(FileReader PRIVATE
+    Qt${QT_VERSION_MAJOR}::Widgets
+    FileReaderLib
+)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -71,4 +95,21 @@ install(TARGETS FileReader
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(FileReader)
+endif()
+
+if (BUILD_WITH_TESTS)
+    add_executable(FileReaderTests
+        tests/tests.cpp
+    )
+
+    target_link_libraries(FileReaderTests PRIVATE
+        GTest::gtest
+        GTest::gtest_main
+        Qt${QT_VERSION_MAJOR}::Widgets
+        Qt${QT_VERSION_MAJOR}::Test
+        FileReaderLib
+    )
+
+    include(GoogleTest)
+    gtest_discover_tests(FileReaderTests)
 endif()
